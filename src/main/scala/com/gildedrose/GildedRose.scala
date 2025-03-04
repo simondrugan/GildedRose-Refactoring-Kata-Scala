@@ -17,13 +17,13 @@ class GildedRose(val items: Array[Item]) {
           items(i).quality = items(i).quality + 1
 
           if (isBackstagePasses(i)) {
-            if (items(i).sellIn < 11) {
+            if (items(i).dayTilExpiry < 11) {
               if (items(i).quality < 50) {
                 items(i).quality = items(i).quality + 1
               }
             }
 
-            if (items(i).sellIn < 6) {
+            if (items(i).dayTilExpiry < 6) {
               if (items(i).quality < 50) {
                 items(i).quality = items(i).quality + 1
               }
@@ -33,10 +33,10 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isNotSulfuras(i)) {
-        items(i).sellIn = items(i).sellIn - 1
+        items(i).dayTilExpiry = items(i).dayTilExpiry - 1
       }
 
-      if (items(i).sellIn < 0) {
+      if (items(i).dayTilExpiry < 0) {
         if (isNotAgedBrie(i)) {
           if (isNotBackStagePasses(i)) {
             if (items(i).quality > 0) {

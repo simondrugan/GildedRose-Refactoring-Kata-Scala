@@ -31,7 +31,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           val items = Array[Item](new Item("Aged Brie", 1, 0))
           val app = new GildedRose(items)
           app.updateQuality()
-          app.items(0).sellIn should equal(0)
+          app.items(0).dayTilExpiry should equal(0)
         }
       }
       "sellIn is negative and quality is 49" should {
@@ -89,7 +89,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           val items = Array[Item](new Item("Backstage passes to a TAFKAL80ETC concert", 1, 0))
           val app = new GildedRose(items)
           app.updateQuality()
-          app.items(0).sellIn should equal(0)
+          app.items(0).dayTilExpiry should equal(0)
         }
       }
       "sellIn is negative and quality is above 50" should {
@@ -124,7 +124,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
             app.updateQuality()
 
             app.items(0).quality should equal(quality)
-            app.items(0).sellIn should equal(sellIn)
+            app.items(0).dayTilExpiry should equal(sellIn)
           }
         }
       }
@@ -167,8 +167,8 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           )
           val app = new GildedRose(items)
           app.updateQuality()
-          app.items(0).sellIn should equal(-11)
-          app.items(1).sellIn should equal(9)
+          app.items(0).dayTilExpiry should equal(-11)
+          app.items(1).dayTilExpiry should equal(9)
         }
       }
     }
