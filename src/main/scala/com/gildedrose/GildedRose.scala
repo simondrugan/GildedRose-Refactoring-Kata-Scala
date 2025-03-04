@@ -2,13 +2,13 @@ package com.gildedrose
 
 class GildedRose(val items: Array[Item]) {
 
+  // Code smell + refactoring in commit history
 
   def updateQuality() {
-    for (i <- 0 until items.length) {
-      if (!items(i).name.equals("Aged Brie")
-        && !items(i).name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+    for (i <- items.indices) {
+      if (isNotAgedBrieOrSulfuras(i)) {
         if (items(i).quality > 0) {
-          if (!items(i).name.equals("Sulfuras, Hand of Ragnaros")) {
+          if (isNotSulfuras(i)) {
             items(i).quality = items(i).quality - 1
           }
         }
@@ -16,7 +16,7 @@ class GildedRose(val items: Array[Item]) {
         if (items(i).quality < 50) {
           items(i).quality = items(i).quality + 1
 
-          if (items(i).name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+          if (isBackstagePasses(i)) {
             if (items(i).sellIn < 11) {
               if (items(i).quality < 50) {
                 items(i).quality = items(i).quality + 1
@@ -32,15 +32,15 @@ class GildedRose(val items: Array[Item]) {
         }
       }
 
-      if (!items(i).name.equals("Sulfuras, Hand of Ragnaros")) {
+      if (isNotSulfuras(i)) {
         items(i).sellIn = items(i).sellIn - 1
       }
 
       if (items(i).sellIn < 0) {
-        if (!items(i).name.equals("Aged Brie")) {
-          if (!items(i).name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (isNotAgedBrie(i)) {
+          if (isNotBackStagePasses(i)) {
             if (items(i).quality > 0) {
-              if (!items(i).name.equals("Sulfuras, Hand of Ragnaros")) {
+              if (isNotSulfuras(i)) {
                 items(i).quality = items(i).quality - 1
               }
             }
@@ -54,5 +54,25 @@ class GildedRose(val items: Array[Item]) {
         }
       }
     }
+  }
+
+  private def isBackstagePasses(index: Int) = {
+    items(index).name.equals("Backstage passes to a TAFKAL80ETC concert")
+  }
+
+  private def isNotBackStagePasses(index: Int) = {
+    !isBackstagePasses(index)
+  }
+
+  private def isNotAgedBrie(index: Int) = {
+    !items(index).name.equals("Aged Brie")
+  }
+
+  private def isNotSulfuras(index: Int) = {
+    !items(index).name.equals("Sulfuras, Hand of Ragnaros")
+  }
+
+  private def isNotAgedBrieOrSulfuras(index: Int): Boolean = {
+    isNotAgedBrie(index) && isNotBackStagePasses(index)
   }
 }

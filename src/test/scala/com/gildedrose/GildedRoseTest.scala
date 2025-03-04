@@ -5,6 +5,9 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class GildedRoseTest extends AnyWordSpec with Matchers {
 
+  // Use more domain language in test name
+  // Increase sbt stryker to 100% to cover edge cases
+
   "updateItem" when {
     "name is: Aged Brie" when {
       "quality is less than 50" should {
