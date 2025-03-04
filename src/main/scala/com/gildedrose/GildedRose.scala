@@ -64,6 +64,7 @@ class GildedRose(val items: Array[Item]) {
     !isBackstagePasses(index)
   }
 
+
   private def isNotAgedBrie(index: Int) = {
     !items(index).name.equals("Aged Brie")
   }
