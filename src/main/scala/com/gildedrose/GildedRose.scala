@@ -4,8 +4,9 @@ class GildedRose(val items: Array[Item]) {
 
   // Code smell + refactoring in commit history
 
+  private val warcraftItems = items.map(_.createItem)
   def updateQuality() {
-    for (i <- items.indices) {
+    for (i <- warcraftItems.indices) {
       if (isNotAgedBrieOrSulfuras(i)) {
         if (items(i).quality > 0) {
           if (isNotSulfuras(i)) {
@@ -17,13 +18,13 @@ class GildedRose(val items: Array[Item]) {
           items(i).quality = items(i).quality + 1
 
           if (isBackstagePasses(i)) {
-            if (items(i).dayTilExpiry < 11) {
+            if (items(i).daysTilExpiry < 11) {
               if (items(i).quality < 50) {
                 items(i).quality = items(i).quality + 1
               }
             }
 
-            if (items(i).dayTilExpiry < 6) {
+            if (items(i).daysTilExpiry < 6) {
               if (items(i).quality < 50) {
                 items(i).quality = items(i).quality + 1
               }
@@ -33,10 +34,10 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isNotSulfuras(i)) {
-        items(i).dayTilExpiry = items(i).dayTilExpiry - 1
+        items(i).daysTilExpiry = items(i).daysTilExpiry - 1
       }
 
-      if (items(i).dayTilExpiry < 0) {
+      if (items(i).daysTilExpiry < 0) {
         if (isNotAgedBrie(i)) {
           if (isNotBackStagePasses(i)) {
             if (items(i).quality > 0) {
