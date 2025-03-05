@@ -27,14 +27,14 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
         }
       }
       "all circumstances" should {
-        "reduce sellIn by 1" in {
+        "reduce daysTilExpiry by 1" in {
           val items = Array[Item](new Item("Aged Brie", 1, 0))
           val app = new GildedRose(items)
           app.updateQuality()
           app.items(0).daysTilExpiry should equal(0)
         }
       }
-      "sellIn is negative and quality is 49" should {
+      "daysTilExpiry is negative and quality is 49" should {
         "increase quality by 1" in {
           val items = Array[Item](new Item("Aged Brie", -1, 49))
           val app = new GildedRose(items)
@@ -42,7 +42,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           app.items(0).quality should equal(50)
         }
       }
-      "sellIn is negative and quality is below 49" should {
+      "daysTilExpiry is negative and quality is below 49" should {
         "increase quality by 2" in {
           val items = Array[Item](
             new Item("Aged Brie", -1, 48),
@@ -60,7 +60,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
     }
 
     "name is: Backstage passes to a TAFKAL80ETC concert" when {
-      "quality is less than 50 and sellIn is 11 or greater" should {
+      "quality is less than 50 and daysTilExpiry is 11 or greater" should {
         "increase quality by 1" in {
           val items = Array[Item](new Item("Backstage passes to a TAFKAL80ETC concert", 11, 49))
           val app = new GildedRose(items)
@@ -68,7 +68,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           app.items(0).quality should equal(50)
         }
       }
-      "quality is less than 49 and sellIn is lower than 11" should {
+      "quality is less than 49 and daysTilExpiry is lower than 11" should {
         "increase quality by 2" in {
           val items = Array[Item](new Item("Backstage passes to a TAFKAL80ETC concert", 10, 48))
           val app = new GildedRose(items)
@@ -76,7 +76,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           app.items(0).quality should equal(50)
         }
       }
-      "quality is less than 48 and sellIn is lower than 6" should {
+      "quality is less than 48 and daysTilExpiry is lower than 6" should {
         "increase quality by 3" in {
           val items = Array[Item](new Item("Backstage passes to a TAFKAL80ETC concert", 5, 47))
           val app = new GildedRose(items)
@@ -85,14 +85,14 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
         }
       }
       "all circumstances" should {
-        "reduce sellIn by 1" in {
+        "reduce daysTilExpiry by 1" in {
           val items = Array[Item](new Item("Backstage passes to a TAFKAL80ETC concert", 1, 0))
           val app = new GildedRose(items)
           app.updateQuality()
           app.items(0).daysTilExpiry should equal(0)
         }
       }
-      "sellIn is negative and quality is above 50" should {
+      "daysTilExpiry is negative and quality is above 50" should {
         "quality should be set to zero" in {
           val items = Array[Item](
             new Item("Backstage passes to a TAFKAL80ETC concert", -1, 51),
@@ -113,25 +113,25 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           val range = -100 to 100 by 1
 
           for {
-            sellIn <- range
+            daysTilExpiry <- range
             quality <- range
           } {
             val items = Array[Item](
-              new Item("Sulfuras, Hand of Ragnaros", sellIn, quality)
+              new Item("Sulfuras, Hand of Ragnaros", daysTilExpiry, quality)
             )
 
             val app = new GildedRose(items)
             app.updateQuality()
 
             app.items(0).quality should equal(quality)
-            app.items(0).daysTilExpiry should equal(sellIn)
+            app.items(0).daysTilExpiry should equal(daysTilExpiry)
           }
         }
       }
     }
 
     "name is: TestName" when {
-      "sellIn is negative and quality is 1" should {
+      "daysTilExpiry is negative and quality is 1" should {
         "reduce quality by 1" in {
           val items = Array[Item](new Item("TestName", 0, 1))
           val app = new GildedRose(items)
@@ -139,7 +139,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           app.items(0).quality should equal(0)
         }
       }
-      "sellIn is negative and quality is above 1" should {
+      "daysTilExpiry is negative and quality is above 1" should {
         "reduce quality by 2" in {
           val items = Array[Item](new Item("TestName", -1, 2))
           val app = new GildedRose(items)
@@ -147,7 +147,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
           app.items(0).quality should equal(0)
         }
       }
-      "sellIn is positive and quality is above 0" should {
+      "daysTilExpiry is positive and quality is above 0" should {
         "reduce quality by 1" in {
           val items = Array[Item](
             new Item("TestName", 1, 1),
@@ -160,7 +160,7 @@ class GildedRoseTest extends AnyWordSpec with Matchers {
         }
       }
       "always" should {
-        "reduce sellIn by 1" in {
+        "reduce daysTilExpiry by 1" in {
           val items = Array[Item](
             new Item("TestName", -10, 0),
             new Item("TestName", 10, 0)
