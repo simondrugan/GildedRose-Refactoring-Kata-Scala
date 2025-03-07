@@ -15,6 +15,7 @@ class Item(val name: String, var daysTilExpiry: Int, var quality: Int) {
     this.quality = warcraftItem.quality
     this.daysTilExpiry = warcraftItem.daysTilExpiry
   }
+
 }
 
 trait WarcraftItem {
@@ -25,6 +26,12 @@ trait WarcraftItem {
 
   def updateQuality(): Unit
   def updateDaysTilExpiry(): Unit
+
+  def increaseQuality(): Unit = {
+    if (quality < 50) {
+      quality = quality + 1
+    }
+  }
 
 }
 

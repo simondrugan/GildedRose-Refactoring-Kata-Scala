@@ -12,6 +12,8 @@ class GildedRose(val items: Array[Item]) {
       var quality = item.quality
       var expiry = item.daysTilExpiry
 
+
+
       if (isNotAgedBrieOrSulfuras(i)) {
         if (quality > 0) {
           if (isNotSulfuras(i)) {
@@ -24,15 +26,11 @@ class GildedRose(val items: Array[Item]) {
 
           if (isBackstagePasses(i)) {
             if (expiry < 11) {
-              if (quality < 50) {
-                quality = quality + 1
-              }
+              increaseQuality(item)
             }
 
             if (expiry < 6) {
-              if (quality < 50) {
-                quality = quality + 1
-              }
+              increaseQuality(item)
             }
           }
         }
@@ -54,12 +52,16 @@ class GildedRose(val items: Array[Item]) {
             quality = quality - quality
           }
         } else {
-          if (quality < 50) {
-            quality = quality + 1
-          }
+          increaseQuality(item)
         }
       }
       items(i).fromWarcraftItem(warcraftItems(i))
+    }
+  }
+
+  def increaseQuality(item: WarcraftItem): Unit = {
+    if (item.quality < 50) {
+      item.quality = item.quality + 1
     }
   }
 
