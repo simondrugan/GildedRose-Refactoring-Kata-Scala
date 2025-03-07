@@ -37,12 +37,6 @@ trait WarcraftItem {
     this.daysTilExpiry = this.daysTilExpiry - 1
   }
 
-  def decrementQuality(): Unit = {
-    if (this.isNotSulfuras()) {
-      this.quality = this.quality - 1
-    }
-  }
-
   def isBackstagePasses() = {
     this.name.equals("Backstage passes to a TAFKAL80ETC concert")
   }
