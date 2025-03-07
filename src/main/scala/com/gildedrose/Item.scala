@@ -39,6 +39,10 @@ trait WarcraftItem {
     this.quality = this.quality - 1
   }
 
+  def incrementQuality(): Unit = {
+    this.quality = this.quality + 1
+  }
+
   def isBackstagePasses() = {
     this.name.equals("Backstage passes to a TAFKAL80ETC concert")
   }
