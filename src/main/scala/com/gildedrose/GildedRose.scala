@@ -55,24 +55,5 @@ class GildedRose(val items: Array[Item]) {
     }
   }
 
-  private def isBackstagePasses(index: Int) = {
-    warcraftItems(index).name.equals("Backstage passes to a TAFKAL80ETC concert")
-  }
 
-  private def isNotBackStagePasses(index: Int) = {
-    !isBackstagePasses(index)
-  }
-
-
-  private def isNotAgedBrie(index: Int) = {
-    !warcraftItems(index).name.equals("Aged Brie")
-  }
-
-  private def isNotSulfuras(index: Int) = {
-    !warcraftItems(index).name.equals("Sulfuras, Hand of Ragnaros")
-  }
-
-  private def isNotAgedBrieOrSulfuras(index: Int): Boolean = {
-    isNotAgedBrie(index) && isNotBackStagePasses(index)
-  }
 }

@@ -37,6 +37,25 @@ trait WarcraftItem {
     this.daysTilExpiry = this.daysTilExpiry - 1
   }
 
+  def isBackstagePasses() = {
+    this.name.equals("Backstage passes to a TAFKAL80ETC concert")
+  }
+
+  def isNotBackStagePasses() = {
+    !this.isBackstagePasses()
+  }
+
+  def isNotAgedBrie() = {
+    !this.name.equals("Aged Brie")
+  }
+
+  def isNotSulfuras() = {
+    !this.name.equals("Sulfuras, Hand of Ragnaros")
+  }
+
+  def isNotAgedBrieOrSulfuras(): Boolean = {
+    isNotAgedBrie() && isNotBackStagePasses()
+  }
 }
 
 case class SulfurasHandOfRagnaros(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
