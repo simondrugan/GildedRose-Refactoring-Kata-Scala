@@ -49,7 +49,7 @@ class GildedRose(val items: Array[Item]) {
               }
             }
           } else {
-            item.quality = item.quality - item.quality
+            item.qualityToZero()
           }
         } else {
           if (item.quality < 50) {

@@ -27,14 +27,12 @@ trait WarcraftItem {
   def updateQuality(): Unit
   def updateDaysTilExpiry(): Unit
 
-  def increaseQuality(): Unit = {
-    if (this.quality < 50) {
-      this.quality = this.quality + 1
-    }
-  }
-
   def decrementDaysTilExpiry(): Unit = {
     this.daysTilExpiry = this.daysTilExpiry - 1
+  }
+
+  def qualityToZero(): Unit = {
+    this.quality = 0
   }
 
   def isBackstagePasses() = {
