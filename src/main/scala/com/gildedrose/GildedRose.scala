@@ -9,26 +9,29 @@ class GildedRose(val items: Array[Item]) {
   def updateQuality() {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
+      var quality = item.quality
+      var expiry = item.daysTilExpiry
+
       if (isNotAgedBrieOrSulfuras(i)) {
-        if (item.quality > 0) {
+        if (quality > 0) {
           if (isNotSulfuras(i)) {
-            item.quality = item.quality - 1
+            quality = quality - 1
           }
         }
       } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
+        if (quality < 50) {
+          quality = quality + 1
 
           if (isBackstagePasses(i)) {
-            if (item.daysTilExpiry < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
+            if (expiry < 11) {
+              if (quality < 50) {
+                quality = quality + 1
               }
             }
 
-            if (item.daysTilExpiry < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
+            if (expiry < 6) {
+              if (quality < 50) {
+                quality = quality + 1
               }
             }
           }
@@ -36,23 +39,23 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isNotSulfuras(i)) {
-        item.daysTilExpiry = item.daysTilExpiry - 1
+        expiry = expiry - 1
       }
 
-      if (item.daysTilExpiry < 0) {
+      if (expiry < 0) {
         if (isNotAgedBrie(i)) {
           if (isNotBackStagePasses(i)) {
-            if (item.quality > 0) {
+            if (quality > 0) {
               if (isNotSulfuras(i)) {
-                item.quality = item.quality - 1
+                quality = quality - 1
               }
             }
           } else {
-            item.quality = item.quality - item.quality
+            quality = quality - quality
           }
         } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1
+          if (quality < 50) {
+            quality = quality + 1
           }
         }
       }
