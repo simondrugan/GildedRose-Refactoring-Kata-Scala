@@ -5,28 +5,30 @@ class GildedRose(val items: Array[Item]) {
   // Code smell + refactoring in commit history
 
   private val warcraftItems = items.map(_.createItem)
+
   def updateQuality() {
     for (i <- warcraftItems.indices) {
+      val item = warcraftItems(i)
       if (isNotAgedBrieOrSulfuras(i)) {
-        if (items(i).quality > 0) {
+        if (item.quality > 0) {
           if (isNotSulfuras(i)) {
-            items(i).quality = items(i).quality - 1
+            item.quality = item.quality - 1
           }
         }
       } else {
-        if (items(i).quality < 50) {
-          items(i).quality = items(i).quality + 1
+        if (item.quality < 50) {
+          item.quality = item.quality + 1
 
           if (isBackstagePasses(i)) {
-            if (items(i).daysTilExpiry < 11) {
-              if (items(i).quality < 50) {
-                items(i).quality = items(i).quality + 1
+            if (item.daysTilExpiry < 11) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1
               }
             }
 
-            if (items(i).daysTilExpiry < 6) {
-              if (items(i).quality < 50) {
-                items(i).quality = items(i).quality + 1
+            if (item.daysTilExpiry < 6) {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1
               }
             }
           }
@@ -34,26 +36,28 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isNotSulfuras(i)) {
-        items(i).daysTilExpiry = items(i).daysTilExpiry - 1
+        item.daysTilExpiry = item.daysTilExpiry - 1
       }
 
-      if (items(i).daysTilExpiry < 0) {
+      if (item.daysTilExpiry < 0) {
         if (isNotAgedBrie(i)) {
           if (isNotBackStagePasses(i)) {
-            if (items(i).quality > 0) {
+            if (item.quality > 0) {
               if (isNotSulfuras(i)) {
-                items(i).quality = items(i).quality - 1
+                item.quality = item.quality - 1
               }
             }
           } else {
-            items(i).quality = items(i).quality - items(i).quality
+            item.quality = item.quality - item.quality
           }
         } else {
-          if (items(i).quality < 50) {
-            items(i).quality = items(i).quality + 1
+          if (item.quality < 50) {
+            item.quality = item.quality + 1
           }
         }
       }
+      items(i).quality        = warcraftItems(i).quality
+      items(i).daysTilExpiry  = warcraftItems(i).daysTilExpiry
     }
   }
 
