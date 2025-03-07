@@ -13,7 +13,7 @@ class GildedRose(val items: Array[Item]) {
       if (item.isNotAgedBrieOrSulfuras()) {
         if (item.quality > 0) {
           if (item.isNotSulfuras()) {
-            item.quality = item.quality - 1
+            item.decrementQuality()
           }
         }
       } else {
@@ -45,7 +45,7 @@ class GildedRose(val items: Array[Item]) {
           if (item.isNotBackStagePasses()) {
             if (item.quality > 0) {
               if (item.isNotSulfuras()) {
-                item.quality = item.quality - 1
+                item.decrementQuality()
               }
             }
           } else {
