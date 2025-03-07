@@ -10,6 +10,11 @@ class Item(val name: String, var daysTilExpiry: Int, var quality: Int) {
       case _ => NormalItem(name = name, daysTilExpiry = daysTilExpiry, quality = quality)
     }
   }
+
+  def fromWarcraftItem(warcraftItem: WarcraftItem): Unit = {
+    this.quality = warcraftItem.quality
+    this.daysTilExpiry = warcraftItem.daysTilExpiry
+  }
 }
 
 trait WarcraftItem {

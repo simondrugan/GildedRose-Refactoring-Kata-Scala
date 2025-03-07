@@ -56,8 +56,7 @@ class GildedRose(val items: Array[Item]) {
           }
         }
       }
-      items(i).quality        = warcraftItems(i).quality
-      items(i).daysTilExpiry  = warcraftItems(i).daysTilExpiry
+      items(i).fromWarcraftItem(warcraftItems(i))
     }
   }
 
