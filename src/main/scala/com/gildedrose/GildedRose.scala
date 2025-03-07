@@ -22,11 +22,15 @@ class GildedRose(val items: Array[Item]) {
 
           if (item.isBackstagePasses()) {
             if (item.daysTilExpiry < 11) {
-              item.increaseQuality()
+              if (item.quality < 50) {
+                item.quality = item.quality + 1
+              }
             }
 
             if (item.daysTilExpiry < 6) {
-              item.increaseQuality()
+              if (item.quality < 50) {
+                item.quality = item.quality + 1
+              }
             }
           }
         }
@@ -48,7 +52,9 @@ class GildedRose(val items: Array[Item]) {
             item.quality = item.quality - item.quality
           }
         } else {
-          item.increaseQuality()
+          if (item.quality < 50) {
+            item.quality = item.quality + 1
+          }
         }
       }
       items(i).fromWarcraftItem(warcraftItems(i))
