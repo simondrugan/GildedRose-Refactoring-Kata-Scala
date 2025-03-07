@@ -33,6 +33,10 @@ trait WarcraftItem {
     }
   }
 
+  def decrementDaysTilExpiry(): Unit = {
+    this.daysTilExpiry = this.daysTilExpiry - 1
+  }
+
 }
 
 case class SulfurasHandOfRagnaros(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {

@@ -33,7 +33,7 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isNotSulfuras(i)) {
-        decrementDaysTilExpiry(item)
+        item.decrementDaysTilExpiry()
       }
 
       if (item.daysTilExpiry < 0) {
@@ -53,10 +53,6 @@ class GildedRose(val items: Array[Item]) {
       }
       items(i).fromWarcraftItem(warcraftItems(i))
     }
-  }
-
-  private def decrementDaysTilExpiry(item: WarcraftItem): Unit = {
-    item.daysTilExpiry = item.daysTilExpiry - 1
   }
 
   private def isBackstagePasses(index: Int) = {
