@@ -9,50 +9,46 @@ class GildedRose(val items: Array[Item]) {
   def updateQuality() {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
-      var quality = item.quality
-      var expiry = item.daysTilExpiry
-
-
 
       if (isNotAgedBrieOrSulfuras(i)) {
-        if (quality > 0) {
+        if (item.quality > 0) {
           if (isNotSulfuras(i)) {
-            quality = quality - 1
+            item.quality = item.quality - 1
           }
         }
       } else {
-        if (quality < 50) {
-          quality = quality + 1
+        if (item.quality < 50) {
+          item.quality = item.quality + 1
 
           if (isBackstagePasses(i)) {
-            if (expiry < 11) {
-              increaseQuality(item)
+            if (item.daysTilExpiry < 11) {
+              item.increaseQuality()
             }
 
-            if (expiry < 6) {
-              increaseQuality(item)
+            if (item.daysTilExpiry < 6) {
+              item.increaseQuality()
             }
           }
         }
       }
 
       if (isNotSulfuras(i)) {
-        expiry = expiry - 1
+        item.daysTilExpiry = item.daysTilExpiry - 1
       }
 
-      if (expiry < 0) {
+      if (item.daysTilExpiry < 0) {
         if (isNotAgedBrie(i)) {
           if (isNotBackStagePasses(i)) {
-            if (quality > 0) {
+            if (item.quality > 0) {
               if (isNotSulfuras(i)) {
-                quality = quality - 1
+                item.quality = item.quality - 1
               }
             }
           } else {
-            quality = quality - quality
+            item.quality = item.quality - item.quality
           }
         } else {
-          increaseQuality(item)
+          item.increaseQuality()
         }
       }
       items(i).fromWarcraftItem(warcraftItems(i))

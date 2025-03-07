@@ -28,8 +28,8 @@ trait WarcraftItem {
   def updateDaysTilExpiry(): Unit
 
   def increaseQuality(): Unit = {
-    if (quality < 50) {
-      quality = quality + 1
+    if (this.quality < 50) {
+      this.quality = this.quality + 1
     }
   }
 
