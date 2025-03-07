@@ -59,12 +59,6 @@ class GildedRose(val items: Array[Item]) {
     }
   }
 
-  def increaseQuality(item: WarcraftItem): Unit = {
-    if (item.quality < 50) {
-      item.quality = item.quality + 1
-    }
-  }
-
   private def isBackstagePasses(index: Int) = {
     warcraftItems(index).name.equals("Backstage passes to a TAFKAL80ETC concert")
   }
