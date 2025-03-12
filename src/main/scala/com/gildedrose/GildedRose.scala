@@ -10,18 +10,9 @@ class GildedRose(val items: Array[Item]) {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
 
-      if (item.isNotAgedBrieOrBackstagePasses()) {
-      } else {
-        if (item.quality < 50) {
-          if (item.isBackstagePasses()) {
-          }
-        }
-      }
-
       item.updateDaysTilExpiry()
-
-
       item.updateQuality()
+
       items(i).fromWarcraftItem(warcraftItems(i))
     }
   }
