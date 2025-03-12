@@ -93,6 +93,7 @@ case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var qual
 }
 case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   def updateQuality(): Unit = {
+    if (quality > 0) decrementQuality()
     if (daysTilExpiry < 0 && quality > 0) decrementQuality()
     else ()
   }

@@ -11,11 +11,6 @@ class GildedRose(val items: Array[Item]) {
       val item = warcraftItems(i)
 
       if (item.isNotAgedBrieOrSulfuras()) {
-        if (item.quality > 0) {
-          if (item.isNotSulfuras()) {
-            item.decrementQuality()
-          }
-        }
       } else {
         if (item.quality < 50) {
           item.incrementQuality()
