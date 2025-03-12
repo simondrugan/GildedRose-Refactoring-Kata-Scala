@@ -14,17 +14,6 @@ class GildedRose(val items: Array[Item]) {
       } else {
         if (item.quality < 50) {
           if (item.isBackstagePasses()) {
-            if (item.daysTilExpiry < 11) {
-              if (item.quality < 50) {
-                item.incrementQuality()
-              }
-            }
-
-            if (item.daysTilExpiry < 6) {
-              if (item.quality < 50) {
-                item.incrementQuality()
-              }
-            }
           }
         }
       }
