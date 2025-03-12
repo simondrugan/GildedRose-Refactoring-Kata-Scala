@@ -13,8 +13,6 @@ class GildedRose(val items: Array[Item]) {
       if (item.isNotAgedBrieOrBackstagePasses()) {
       } else {
         if (item.quality < 50) {
-          item.incrementQuality()
-
           if (item.isBackstagePasses()) {
             if (item.daysTilExpiry < 11) {
               if (item.quality < 50) {
