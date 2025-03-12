@@ -59,7 +59,7 @@ trait WarcraftItem {
     !name.equals("Sulfuras, Hand of Ragnaros")
   }
 
-  def isNotAgedBrieOrSulfuras(): Boolean = {
+  def isNotAgedBrieOrBackstagePasses(): Boolean = {
     isNotAgedBrie() && isNotBackStagePasses()
   }
 }

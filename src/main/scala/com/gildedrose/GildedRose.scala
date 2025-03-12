@@ -10,7 +10,7 @@ class GildedRose(val items: Array[Item]) {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
 
-      if (item.isNotAgedBrieOrSulfuras()) {
+      if (item.isNotAgedBrieOrBackstagePasses()) {
       } else {
         if (item.quality < 50) {
           item.incrementQuality()
