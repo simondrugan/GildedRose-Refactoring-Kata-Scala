@@ -38,7 +38,7 @@ trait WarcraftItem {
   }
 
   def incrementQuality(): Unit = {
-    quality = quality + 1
+    if (quality < 50) quality = quality + 1
   }
 
 }
@@ -54,8 +54,8 @@ case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftIt
   val name = "Aged Brie"
 
   def updateQuality(): Unit = {
-    if (quality < 50)                      incrementQuality()
-    if (daysTilExpiry < 0 && quality < 50) incrementQuality()
+    incrementQuality()
+    if (daysTilExpiry < 0) incrementQuality()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
@@ -64,10 +64,10 @@ case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var qual
   val name = "Backstage passes to a TAFKAL80ETC concert"
 
   def updateQuality(): Unit = {
-    if (quality < 50)                       incrementQuality()
-    if (quality < 50 && daysTilExpiry < 11) incrementQuality()
-    if (quality < 50 && daysTilExpiry < 6)  incrementQuality()
-    if (daysTilExpiry < 0)                  qualityToZero()
+    incrementQuality()
+    if (daysTilExpiry < 11) incrementQuality()
+    if (daysTilExpiry < 6)  incrementQuality()
+    if (daysTilExpiry < 0)  qualityToZero()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
