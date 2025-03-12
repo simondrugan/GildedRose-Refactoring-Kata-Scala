@@ -36,9 +36,8 @@ class GildedRose(val items: Array[Item]) {
         }
       }
 
-      if (item.isNotSulfuras()) {
-        item.decrementDaysTilExpiry()
-      }
+      item.updateDaysTilExpiry()
+
 
       item.updateQuality()
       items(i).fromWarcraftItem(warcraftItems(i))

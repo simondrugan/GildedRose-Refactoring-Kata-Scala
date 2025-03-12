@@ -79,7 +79,7 @@ case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftIt
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = ()
+  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
 }
 case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   val name = "Backstage passes to a TAFKAL80ETC concert"
@@ -89,7 +89,7 @@ case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var qual
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = ()
+  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
 }
 case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   def updateQuality(): Unit = {
@@ -97,5 +97,5 @@ case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) ex
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = ()
+  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
 }
