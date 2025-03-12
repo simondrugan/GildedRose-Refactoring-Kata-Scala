@@ -44,9 +44,7 @@ class GildedRose(val items: Array[Item]) {
         if (item.isNotAgedBrie()) {
           if (item.isNotBackStagePasses()) {
             if (item.quality > 0) {
-              if (item.isNotSulfuras()) {
-                item.decrementQuality()
-              }
+              item.updateQuality()
             }
           } else {
             item.qualityToZero()
