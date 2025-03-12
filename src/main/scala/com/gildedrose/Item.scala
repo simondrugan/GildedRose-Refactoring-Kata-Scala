@@ -74,7 +74,10 @@ case class SulfurasHandOfRagnaros(var daysTilExpiry: Int, var quality: Int) exte
 case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   val name = "Aged Brie"
 
-  def updateQuality(): Unit = ()
+  def updateQuality(): Unit = {
+    if (daysTilExpiry < 0 && quality < 50) this.incrementQuality()
+    else ()
+  }
 
   def updateDaysTilExpiry(): Unit = ()
 }

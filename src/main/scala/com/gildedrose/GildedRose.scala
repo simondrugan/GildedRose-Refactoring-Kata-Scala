@@ -48,9 +48,7 @@ class GildedRose(val items: Array[Item]) {
             item.qualityToZero()
           }
         } else {
-          if (item.quality < 50) {
-            item.incrementQuality()
-          }
+          item.updateQuality()
         }
       }
       items(i).fromWarcraftItem(warcraftItems(i))
