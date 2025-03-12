@@ -22,6 +22,10 @@ trait WarcraftItem {
   var daysTilExpiry: Int
   var quality: Int
 
+  def updateItem(): Unit =
+    updateQuality()
+    updateDaysTilExpiry()
+
   def updateQuality(): Unit
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
 

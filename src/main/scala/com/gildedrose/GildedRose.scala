@@ -8,8 +8,7 @@ class GildedRose(val items: Array[Item]) {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
 
-      item.updateDaysTilExpiry()
-      item.updateQuality()
+      item.updateItem()
 
       items(i).fromWarcraftItem(warcraftItems(i))
     }
