@@ -2,8 +2,6 @@ package com.gildedrose
 
 class GildedRose(val items: Array[Item]) {
 
-  // Code smell + refactoring in commit history
-
   private val warcraftItems = items.map(_.createItem)
 
   def updateQuality() {
@@ -16,6 +14,5 @@ class GildedRose(val items: Array[Item]) {
       items(i).fromWarcraftItem(warcraftItems(i))
     }
   }
-
 
 }

@@ -1,6 +1,5 @@
 package com.gildedrose
 
-
 class Item(val name: String, var daysTilExpiry: Int, var quality: Int) {
   def createItem: WarcraftItem = {
     name match {
@@ -15,7 +14,6 @@ class Item(val name: String, var daysTilExpiry: Int, var quality: Int) {
     quality = warcraftItem.quality
     daysTilExpiry = warcraftItem.daysTilExpiry
   }
-
 }
 
 trait WarcraftItem {
@@ -43,21 +41,6 @@ trait WarcraftItem {
     quality = quality + 1
   }
 
-  def isBackstagePasses() = {
-    name.equals("Backstage passes to a TAFKAL80ETC concert")
-  }
-
-  def isNotBackStagePasses() = {
-    !isBackstagePasses()
-  }
-
-  def isNotAgedBrie() = {
-    !name.equals("Aged Brie")
-  }
-
-  def isNotAgedBrieOrBackstagePasses(): Boolean = {
-    isNotAgedBrie() && isNotBackStagePasses()
-  }
 }
 
 case class SulfurasHandOfRagnaros(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
@@ -73,7 +56,6 @@ case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftIt
   def updateQuality(): Unit = {
     if (quality < 50)                      incrementQuality()
     if (daysTilExpiry < 0 && quality < 50) incrementQuality()
-    else ()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
@@ -86,16 +68,14 @@ case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var qual
     if (quality < 50 && daysTilExpiry < 11) incrementQuality()
     if (quality < 50 && daysTilExpiry < 6)  incrementQuality()
     if (daysTilExpiry < 0)                  qualityToZero()
-    else ()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
 }
 case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   def updateQuality(): Unit = {
-    if (quality > 0) decrementQuality()
+    if (quality > 0)                      decrementQuality()
     if (daysTilExpiry < 0 && quality > 0) decrementQuality()
-    else ()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
