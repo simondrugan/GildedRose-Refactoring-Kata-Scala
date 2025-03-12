@@ -34,7 +34,7 @@ trait WarcraftItem {
   }
 
   def decrementQuality(): Unit = {
-    quality = quality - 1
+    if (quality > 0) quality = quality - 1
   }
 
   def incrementQuality(): Unit = {
@@ -74,8 +74,8 @@ case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var qual
 }
 case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   def updateQuality(): Unit = {
-    if (quality > 0)                      decrementQuality()
-    if (daysTilExpiry < 0 && quality > 0) decrementQuality()
+    decrementQuality()
+    if (daysTilExpiry < 0) decrementQuality()
   }
 
   def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
