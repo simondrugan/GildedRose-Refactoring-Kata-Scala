@@ -40,17 +40,7 @@ class GildedRose(val items: Array[Item]) {
         item.decrementDaysTilExpiry()
       }
 
-      if (item.daysTilExpiry < 0) {
-        if (item.isNotAgedBrie()) {
-          if (item.isNotBackStagePasses()) {
-            item.updateQuality()
-          } else {
-            item.updateQuality()
-          }
-        } else {
-          item.updateQuality()
-        }
-      }
+      item.updateQuality()
       items(i).fromWarcraftItem(warcraftItems(i))
     }
   }
