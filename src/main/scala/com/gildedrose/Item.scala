@@ -12,8 +12,8 @@ class Item(val name: String, var daysTilExpiry: Int, var quality: Int) {
   }
 
   def fromWarcraftItem(warcraftItem: WarcraftItem): Unit = {
-    this.quality = warcraftItem.quality
-    this.daysTilExpiry = warcraftItem.daysTilExpiry
+    quality = warcraftItem.quality
+    daysTilExpiry = warcraftItem.daysTilExpiry
   }
 
 }
@@ -28,35 +28,35 @@ trait WarcraftItem {
   def updateDaysTilExpiry(): Unit
 
   def decrementDaysTilExpiry(): Unit = {
-    this.daysTilExpiry = this.daysTilExpiry - 1
+    daysTilExpiry = daysTilExpiry - 1
   }
 
   def qualityToZero(): Unit = {
-    this.quality = 0
+    quality = 0
   }
 
   def decrementQuality(): Unit = {
-    this.quality = this.quality - 1
+    quality = quality - 1
   }
 
   def incrementQuality(): Unit = {
-    this.quality = this.quality + 1
+    quality = quality + 1
   }
 
   def isBackstagePasses() = {
-    this.name.equals("Backstage passes to a TAFKAL80ETC concert")
+    name.equals("Backstage passes to a TAFKAL80ETC concert")
   }
 
   def isNotBackStagePasses() = {
-    !this.isBackstagePasses()
+    !isBackstagePasses()
   }
 
   def isNotAgedBrie() = {
-    !this.name.equals("Aged Brie")
+    !name.equals("Aged Brie")
   }
 
   def isNotSulfuras() = {
-    !this.name.equals("Sulfuras, Hand of Ragnaros")
+    !name.equals("Sulfuras, Hand of Ragnaros")
   }
 
   def isNotAgedBrieOrSulfuras(): Boolean = {
@@ -75,27 +75,27 @@ case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftIt
   val name = "Aged Brie"
 
   def updateQuality(): Unit = {
-    if (daysTilExpiry < 0 && quality < 50) this.incrementQuality()
+    if (daysTilExpiry < 0 && quality < 50) incrementQuality()
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
+  def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
 }
 case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   val name = "Backstage passes to a TAFKAL80ETC concert"
 
   def updateQuality(): Unit = {
-    if (daysTilExpiry < 0) this.qualityToZero()
+    if (daysTilExpiry < 0) qualityToZero()
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
+  def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
 }
 case class NormalItem(name: String, var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   def updateQuality(): Unit = {
-    if (daysTilExpiry < 0 && quality > 0) this.decrementQuality()
+    if (daysTilExpiry < 0 && quality > 0) decrementQuality()
     else ()
   }
 
-  def updateDaysTilExpiry(): Unit = this.decrementDaysTilExpiry()
+  def updateDaysTilExpiry(): Unit = decrementDaysTilExpiry()
 }
