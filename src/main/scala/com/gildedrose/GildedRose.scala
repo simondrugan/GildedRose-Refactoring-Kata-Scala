@@ -7,10 +7,8 @@ class GildedRose(val items: Array[Item]) {
   def updateQuality() {
     for (i <- warcraftItems.indices) {
       val item = warcraftItems(i)
-
-      item.updateItem()
-
-      items(i).fromWarcraftItem(warcraftItems(i))
+      item.update()
+      items(i).fromWarcraftItem(item)
     }
   }
 
