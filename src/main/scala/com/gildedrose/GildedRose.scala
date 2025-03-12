@@ -45,7 +45,7 @@ class GildedRose(val items: Array[Item]) {
           if (item.isNotBackStagePasses()) {
             item.updateQuality()
           } else {
-            item.qualityToZero()
+            item.updateQuality()
           }
         } else {
           item.updateQuality()

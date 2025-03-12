@@ -84,7 +84,10 @@ case class AgedBrie(var daysTilExpiry: Int, var quality: Int) extends WarcraftIt
 case class BackstagePassesToATAFKAL80ETCconcert(var daysTilExpiry: Int, var quality: Int) extends WarcraftItem {
   val name = "Backstage passes to a TAFKAL80ETC concert"
 
-  def updateQuality(): Unit = ()
+  def updateQuality(): Unit = {
+    if (daysTilExpiry < 0) this.qualityToZero()
+    else ()
+  }
 
   def updateDaysTilExpiry(): Unit = ()
 }
